@@ -1,6 +1,5 @@
 package com.example.quitandafrescor.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,8 +28,11 @@ import com.example.quitandafrescor.repository.ProductRepository;
 @RequestMapping("product")
 public class ProductController {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    public ProductController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
