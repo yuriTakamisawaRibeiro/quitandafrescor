@@ -2,15 +2,17 @@ FROM ubuntu:latest AS build
 
 RUN apt-get update
 RUN apt-get install openjdk-17-jdk -y
-COPY  . .
+
+RUN mkdir /app
+COPY  . /app
 
 RUN apt-get install maven -y
-RUN mvn -f /pom.xml clean install 
+RUN mvn -f /app/pom.xml clean install 
 
 FROM openjdk:17-jdk
 
 EXPOSE 8080
 
-COPY --from=build /target/quitandafrescorBuild.jar app.jar 
+COPY --from=build /app/target/quitandafrescorBuild.jar app.jar 
 
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
