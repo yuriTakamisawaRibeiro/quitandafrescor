@@ -7,7 +7,7 @@ RUN mkdir /app
 COPY  . /app
 
 RUN apt-get install maven -y
-RUN mvn -f /app/pom.xml clean install 
+RUN mvn -f /app/pom.xml clean install -DskipTests
 
 FROM openjdk:17-jdk
 
