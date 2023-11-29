@@ -11,6 +11,6 @@ FROM openjdk:17-jdk
 
 EXPOSE 8080
 
-COPY --from=build quitandafrescor\quitandafrescorBuild.jar app.jar 
+COPY --from=build /target/quitandafrescorBuild.jar app.jar 
 
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
